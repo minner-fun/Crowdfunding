@@ -29,6 +29,7 @@ contract Crowdfunding {
         Closed      // 已关闭
     }
     
+    // 众筹状态
     CrowdfundingState public state;
     
     // 投资者地址到投资金额的映射
@@ -42,38 +43,38 @@ contract Crowdfunding {
     
     // ============ 事件定义 ============
     
-    event ContributionReceived(address indexed contributor, uint256 amount);
-    event GoalReached(uint256 totalAmount);
-    event FundsWithdrawn(address indexed creator, uint256 amount);
-    event RefundIssued(address indexed contributor, uint256 amount);
-    event CrowdfundingClosed();
+    event ContributionReceived(address indexed contributor, uint256 amount); // 投资事件 indexed 索引化
+    event GoalReached(uint256 totalAmount); // 达到目标事件
+    event FundsWithdrawn(address indexed creator, uint256 amount); // 提取资金事件
+    event RefundIssued(address indexed contributor, uint256 amount); // 退款事件
+    event CrowdfundingClosed(); // 众筹关闭事件
     
     // ============ 自定义错误 ============
     
-    error CrowdfundingEnded();
-    error CrowdfundingNotEnded();
-    error GoalNotReached();
-    error GoalAlreadyReached();
-    error OnlyCreator();
-    error InvalidAmount();
-    error NoContribution();
-    error AlreadyClosed();
-    error TransferFailed();
+    error CrowdfundingEnded(); // 众筹结束错误
+    error CrowdfundingNotEnded(); // 众筹未结束错误
+    error GoalNotReached(); // 目标未达到错误
+    error GoalAlreadyReached(); // 目标已达到错误
+    error OnlyCreator(); // 仅创建者错误
+    error InvalidAmount(); // 无效金额错误
+    error NoContribution(); // 没有投资错误
+    error AlreadyClosed(); // 已关闭错误
+    error TransferFailed(); // 转账失败错误
     
     // ============ 修饰符 ============
     
     modifier onlyCreator() {
-        if (msg.sender != creator) revert OnlyCreator();
+        if (msg.sender != creator) revert OnlyCreator(); // 仅创建者错误
         _;
     }
     
     modifier onlyActive() {
-        if (state != CrowdfundingState.Active) revert AlreadyClosed();
+        if (state != CrowdfundingState.Active) revert AlreadyClosed(); // 已关闭错误
         _;
     }
     
     modifier onlyAfterDeadline() {
-        if (block.timestamp < deadline) revert CrowdfundingNotEnded();
+        if (block.timestamp < deadline) revert CrowdfundingNotEnded(); // 众筹未结束错误
         _;
     }
     
@@ -90,8 +91,8 @@ contract Crowdfunding {
      * @param _durationInDays 众筹持续天数
      */
     constructor(uint256 _goal, uint256 _durationInDays) {
-        if (_goal == 0) revert InvalidAmount();
-        if (_durationInDays == 0) revert InvalidAmount();
+        if (_goal == 0) revert InvalidAmount(); // 无效金额错误
+        if (_durationInDays == 0) revert InvalidAmount(); // 无效金额错误
         
         creator = msg.sender;
         goal = _goal;
