@@ -1,0 +1,52 @@
+{
+  "name": "crowdfunding-dapp",
+  "version": "1.0.0",
+  "description": "一个功能完整的众筹智能合约项目，包含Solidity常用功能演示",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "test:gas": "REPORT_GAS=true hardhat test",
+    "deploy:local": "hardhat run scripts/deploy.js --network localhost",
+    "deploy:hardhat": "hardhat run scripts/deploy.js --network hardhat",
+    "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
+    "deploy:goerli": "hardhat run scripts/deploy.js --network goerli",
+    "node": "hardhat node",
+    "clean": "hardhat clean",
+    "size": "hardhat size-contracts",
+    "verify:sepolia": "hardhat verify --network sepolia",
+    "verify:goerli": "hardhat verify --network goerli",
+    "interact": "hardhat run scripts/interact.js --network hardhat",
+    "interact:local": "hardhat run scripts/interact.js --network localhost"
+  },
+  "keywords": [
+    "solidity",
+    "ethereum",
+    "smart-contracts",
+    "crowdfunding",
+    "blockchain",
+    "dapp",
+    "hardhat"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.10",
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.6",
+    "@nomicfoundation/hardhat-ethers": "^3.0.5",
+    "@nomicfoundation/hardhat-verify": "^2.0.5",
+    "@typechain/ethers-v6": "^0.5.1",
+    "@typechain/hardhat": "^9.1.0",
+    "@types/chai": "^4.3.11",
+    "@types/mocha": "^10.0.6",
+    "chai": "^4.4.1",
+    "ethers": "^6.10.0",
+    "hardhat": "^2.19.5",
+    "hardhat-gas-reporter": "^1.0.10",
+    "solidity-coverage": "^0.8.7",
+    "typechain": "^8.3.2",
+    "dotenv": "^16.4.1"
+  },
+  "dependencies": {}
+} 
