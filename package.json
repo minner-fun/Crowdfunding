@@ -10,6 +10,7 @@
     "deploy:local": "hardhat run scripts/deploy.js --network localhost",
     "deploy:hardhat": "hardhat run scripts/deploy.js --network hardhat",
     "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
+    "deploy:sepolia-detailed": "hardhat run scripts/deploy-sepolia.js --network sepolia",
     "deploy:goerli": "hardhat run scripts/deploy.js --network goerli",
     "node": "hardhat node",
     "clean": "hardhat clean",
@@ -17,7 +18,8 @@
     "verify:sepolia": "hardhat verify --network sepolia",
     "verify:goerli": "hardhat verify --network goerli",
     "interact": "hardhat run scripts/interact.js --network hardhat",
-    "interact:local": "hardhat run scripts/interact.js --network localhost"
+    "interact:local": "hardhat run scripts/interact.js --network localhost",
+    "check-env": "hardhat run scripts/check-env.js --network sepolia"
   },
   "keywords": [
     "solidity",
