@@ -118,6 +118,7 @@ contract Crowdfunding {
             hasContributed[msg.sender] = true;
         }
         
+        // 触发投资事件 emit 触发事件
         emit ContributionReceived(msg.sender, msg.value);
         
         // 检查是否达到目标

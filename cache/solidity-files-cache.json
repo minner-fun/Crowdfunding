@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\admin\\Codes\\Crowdfunding\\contracts\\Crowdfunding.sol": {
-      "lastModificationDate": 1748298684895,
-      "contentHash": "bcba8c3159b5f796e20380f162924803",
+      "lastModificationDate": 1748301965077,
+      "contentHash": "34292f37fcf270a3e8ed12d4fd6eac6b",
       "sourceName": "contracts/Crowdfunding.sol",
       "solcConfig": {
         "version": "0.8.19",
