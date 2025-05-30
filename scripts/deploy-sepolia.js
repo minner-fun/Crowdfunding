@@ -84,8 +84,12 @@ async function main() {
         const goal = ethers.parseEther("1"); // 1 ETH (测试网用较小金额)
         const duration = 7; // 7 天
         const title = "Sepolia 测试项目";
-        const description = "这是一个在 Sepolia 测试网上的示例众筹项目";
-        const imageUrl = "https://example.com/test-project.jpg";
+        const description = "这是一个在 Sepolia 测试网上的示例众筹项目，用于测试平台功能。目标是筹集资金用于区块链技术研发和社区建设。";
+        // 选择以下任一选项：
+        // 选项1: 使用空字符串，显示默认图片
+        // const imageUrl = ""; 
+        // 选项2: 使用免费占位图片服务（取消注释下面一行）
+        const imageUrl = "https://picsum.photos/400/200?random=1";
         
         console.log("⏳ 创建项目交易中...");
         const createTx = await crowdfundingFactory.createCrowdfunding(

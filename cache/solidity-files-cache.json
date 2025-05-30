@@ -72,6 +72,41 @@
       "artifacts": [
         "CrowdfundingFactory"
       ]
+    },
+    "D:\\qifumin\\Crowdfunding\\contracts\\CrowdfundingV2.sol": {
+      "lastModificationDate": 1748577450630,
+      "contentHash": "c771d2b63994d9211e087f1206329701",
+      "sourceName": "contracts/CrowdfundingV2.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.19"
+      ],
+      "artifacts": [
+        "CrowdfundingV2"
+      ]
     }
   }
 }
