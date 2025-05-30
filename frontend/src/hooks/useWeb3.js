@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { ethers } from 'ethers';
 import { CURRENT_NETWORK, FACTORY_ABI, CROWDFUNDING_ABI } from '../config/contracts';
-import toast from 'react-hot-toast';
+import toast from 'react-hot-toast'; // 显示 toast 消息
 
 // 支持的钱包类型
 const WALLET_TYPES = {
@@ -11,14 +11,14 @@ const WALLET_TYPES = {
 };
 
 export const useWeb3 = () => {
-  const [account, setAccount] = useState(null);
-  const [provider, setProvider] = useState(null);
-  const [signer, setSigner] = useState(null);
-  const [factoryContract, setFactoryContract] = useState(null);
-  const [isConnecting, setIsConnecting] = useState(false);
-  const [chainId, setChainId] = useState(null);
-  const [connectedWallet, setConnectedWallet] = useState(null);
-  const [availableWallets, setAvailableWallets] = useState([]);
+  const [account, setAccount] = useState(null); // 当前账户
+  const [provider, setProvider] = useState(null); // 提供者
+  const [signer, setSigner] = useState(null); // 签名者
+  const [factoryContract, setFactoryContract] = useState(null); // 工厂合约
+  const [isConnecting, setIsConnecting] = useState(false); // 是否正在连接
+  const [chainId, setChainId] = useState(null); // 当前链ID
+  const [connectedWallet, setConnectedWallet] = useState(null); // 连接的钱包
+  const [availableWallets, setAvailableWallets] = useState([]); // 可用钱包列表
   
   // 使用 ref 来存储最新的 connectWallet 函数引用
   const connectWalletRef = useRef();
@@ -70,7 +70,7 @@ export const useWeb3 = () => {
       }
     }
     
-    setAvailableWallets(wallets);
+    setAvailableWallets(wallets); // 更新可用钱包列表
     return wallets;
   }, []); // 空依赖数组，因为这个函数不依赖任何状态
 
@@ -111,36 +111,36 @@ export const useWeb3 = () => {
       }
 
       // 创建 provider 和 signer
-      const web3Provider = new ethers.BrowserProvider(selectedWallet.provider);
-      const web3Signer = await web3Provider.getSigner();
-      const network = await web3Provider.getNetwork();
+      const web3Provider = new ethers.BrowserProvider(selectedWallet.provider); // 浏览器提供者
+      const web3Signer = await web3Provider.getSigner(); // 签名者
+      const network = await web3Provider.getNetwork(); // 网络
 
       // 检查网络
       if (Number(network.chainId) !== CURRENT_NETWORK.chainId) {
-        await switchToSepoliaNetwork(selectedWallet.provider);
+        await switchToSepoliaNetwork(selectedWallet.provider); // 切换到 Sepolia 网络
         return;
       }
 
       // 创建工厂合约实例
-      const factory = new ethers.Contract(
-        CURRENT_NETWORK.factoryAddress,
-        FACTORY_ABI,
-        web3Signer
+      const factory = new ethers.Contract(  // 工厂合约实例
+        CURRENT_NETWORK.factoryAddress, // 工厂地址
+        FACTORY_ABI, // 工厂 ABI
+        web3Signer // 签名者
       );
 
-      setAccount(accounts[0]);
-      setProvider(web3Provider);
-      setSigner(web3Signer);
-      setFactoryContract(factory);
-      setChainId(Number(network.chainId));
-      setConnectedWallet(selectedWallet);
+      setAccount(accounts[0]); // 设置当前账户
+      setProvider(web3Provider); // 设置提供者
+      setSigner(web3Signer); // 设置签名者
+      setFactoryContract(factory); // 设置工厂合约实例
+      setChainId(Number(network.chainId)); // 设置当前链ID
+      setConnectedWallet(selectedWallet); // 设置连接的钱包
 
-      toast.success(`${selectedWallet.name} 连接成功！`);
+      toast.success(`${selectedWallet.name} 连接成功！`); // 显示成功消息
     } catch (error) {
-      console.error('连接钱包失败:', error);
-      toast.error('连接钱包失败: ' + error.message);
+      console.error('连接钱包失败:', error); // 显示错误消息
+      toast.error('连接钱包失败: ' + error.message); // 显示错误消息
     } finally {
-      setIsConnecting(false);
+      setIsConnecting(false); // 设置连接状态为 false 
     }
   }, [availableWallets]);
 
@@ -209,7 +209,7 @@ export const useWeb3 = () => {
     return new ethers.Contract(address, CROWDFUNDING_ABI, signer);
   }, [signer]);
 
-  // 格式化地址
+  // 格式化地址, 把地址改为前6位和后4位中间带...的形式
   const formatAddress = (address) => {
     if (!address) return '';
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
