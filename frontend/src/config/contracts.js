@@ -6,8 +6,8 @@ export const CONTRACT_CONFIG = {
     name: "Sepolia",
     rpcUrl: "https://rpc.sepolia.org",
     blockExplorer: "https://sepolia.etherscan.io",
-    factoryAddress: "0xD67f4Ae056520Ad36456298D6F8714C9c899454C",
-    deploymentBlock: 8415239
+    factoryAddress: "0xE110ec3cC46c08A938ACA4150B9E9D201eBF687e",
+    deploymentBlock: 8436587
   }
 };
 
